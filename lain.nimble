@@ -11,4 +11,4 @@ bin           = @["lain"]
 
 # Dependencies
 
-requires "nim >= 2.0.4"
+requires "nim >= 2.0.0"
