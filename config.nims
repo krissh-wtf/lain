@@ -1,7 +1,3 @@
-# use musl-gcc rather than gcc
-switch("gcc.exe", "musl-gcc")
-switch("gcc.linkerexe", "musl-gcc")
-
 # optimize for console use
 switch("app", "console")
 
