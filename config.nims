@@ -1,10 +1,8 @@
-# optimize for console use
 switch("app", "console")
 
-# optimize for release build (better performance)
 switch("define", "release")
+switch("define", "ssl")
 
-# compiler & linker optimizations for size and speed
 switch("panics", "on")
 switch("threads", "on")
 switch("opt", "size")
