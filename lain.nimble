@@ -1,6 +1,6 @@
 # Package
 
-version       = "1.0.0"
+version       = "1.5.0"
 author        = "kkrriisssshh"
 description   = "watch exclusively serial experiments lain from your terminal!"
 license       = "GPL-3.0-or-later"

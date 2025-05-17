@@ -1,10 +1,11 @@
-import std/json
+import std/[json, parsecfg]
 from std/terminal import eraseScreen, setCursorPos, getch
 from std/osproc import execCmd
 from std/os import fileExists
 from std/httpclient import downloadFile, newHttpClient
 
 let
+  config: Config = loadConfig("lain.nimble")
   layers: JsonNode = parseJson(readFile("layers/layers.json"))
 
 proc getLayer(layerNumber: int): JsonNode =
@@ -36,7 +37,9 @@ proc lain(layers: seq[int] =  @[], download: bool = false, watch: bool = true): 
       description = layer["description"].getStr()
       link = layer["link"].getStr()
 
-    echo "lain: v0.1.0\n-----------------------------"
+      cmd = "mpv --title=lain --profile=fast --no-terminal "
+
+    echo "lain: " & config.getSectionValue("", "version") & "\n-----------------------------"
     echo "title: " & title
     echo "director: " & directory
     echo "date: " & date
@@ -50,10 +53,10 @@ proc lain(layers: seq[int] =  @[], download: bool = false, watch: bool = true): 
         echo "lain: layer already downloaded"
 
     if watch and not download:
-      discard execCmd("mpv --title=lain --profile=fast " & link)
+      discard execCmd(cmd & link)
 
     elif watch and download:
-      discard execCmd("mpv --title=lain --profile=fast " & "layers/" & title & ".mp4")
+      discard execCmd(cmd & "layers/" & title & ".mp4")
 
     elif watch == false:
       echo ""
